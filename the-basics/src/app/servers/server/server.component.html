@@ -1,6 +1,7 @@
-<div class="alert alert-success"
+<!-- div class="alert alert-success"
   [class.alert-warning]="warning"
   [class.alert-danger]="danger"
-  [class.alert-success]="success">
+  [class.alert-success]="success" -->
+<div class="alert" [ngClass]="{ 'alert-warning': warning, 'alert-danger': danger, 'alert-success': success }">
   <b>Server:</b> {{server.name}} <br> <b>Status:</b> {{server.status}}
 </div>

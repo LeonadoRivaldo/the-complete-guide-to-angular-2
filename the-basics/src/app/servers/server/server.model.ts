@@ -16,4 +16,9 @@ export class Server implements IServer {
     this.status = status || 'ok';
   }
 
+
+  static getStatus(): ServerStatus {
+    return Math.random() > 0.5 ? 'ok' : 'offline';
+   }
+
 }

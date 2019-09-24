@@ -38,8 +38,9 @@ export class ServersComponent implements OnInit {
     this.addServer(this.newServerName);
   }
   addServer(name: string): void {
-    this.servers.push( new Server(name) );
+    this.servers.push( new Server(name, Server.getStatus()  ) );
     this.newServerName = null;
+    this.toogleForm();
   }
 
   removeServer(): void {
