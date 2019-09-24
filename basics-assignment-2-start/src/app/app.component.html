@@ -1,0 +1,24 @@
+<div class="container" style="margin-top:20px;">
+  <div class="row">
+    <div class="col-12">
+      <ol style="padding:0;padding-left:17px;">
+        <li><s>Add a Input field which updates a property ('username') via Two-Way-Binding</s></li>
+        <li><s>Output the username property via String Interpolation (in a paragraph below the input)</s></li>
+        <li><s>Add a button which may only be clicked if the username is NOT an empty string</s></li>
+        <li><s>Upon clicking the button, the username should be reset to an empty string</s></li>
+      </ol>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="username"> Username </label>
+        <input id="username" type="text" class="form-control form-control-sm" [(ngModel)]="username">
+        <button (click)=" resetUsername() " class="btn btn-primary btn-sm" style="margin-top:10px;" [disabled]="!username"> Reset </button>
+      </div>
+
+      <div class="alert alert-info">
+        <b>User name: </b>{{ username }}
+      </div>
+
+    </div>
+  </div>
+</div>
