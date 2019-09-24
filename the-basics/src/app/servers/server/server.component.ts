@@ -20,7 +20,7 @@ export class ServerComponent implements OnInit {
     return this.server.status === 'stopped_services';
   }
   get danger(): boolean {
-    return this.server.status === 'down';
+    return this.server.status === 'down' || this.server.status === 'offline';
   }
   get success(): boolean {
     return this.server.status === 'ok';

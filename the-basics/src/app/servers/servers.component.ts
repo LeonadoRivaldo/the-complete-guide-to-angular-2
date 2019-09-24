@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IServer } from './server/server.model';
+import { IServer, Server } from './server/server.model';
 
 @Component({
   selector: 'app-servers',
@@ -8,9 +8,14 @@ import { IServer } from './server/server.model';
 })
 export class ServersComponent implements OnInit {
 
-  servers: IServer[];
+  constructor() {
+    this.allowUserControl  = true;
+  }
 
-  constructor() { }
+  allowUserControl: boolean;
+  servers: IServer[];
+  showForm = false;
+  newServerName: string = null;
 
   ngOnInit() {
     this.getServers();
@@ -20,8 +25,36 @@ export class ServersComponent implements OnInit {
     this.servers = [
       {name: 'One piece', status: 'ok' },
       {name: 'Naruto', status: 'down'},
-      {name: 'Dragon Ball', status: 'stopped_services'}
+      {name: 'Dragon Ball', status: 'stopped_services'},
+      {name: 'Inuasha', status: 'offline'}
     ];
+  }
+
+
+  toogleForm() {
+    this.showForm = !this.showForm;
+  }
+  saveServer() {
+    this.addServer(this.newServerName);
+  }
+  addServer(name: string): void {
+    this.servers.push( new Server(name) );
+    this.newServerName = null;
+  }
+
+  removeServer(): void {
+    if ( confirm('Remove server, are you sure?') === false ) {
+      return ;
+    }
+    const name = prompt('Server name?');
+    let index = -1;
+    this.servers.forEach(( v: IServer, i: number ) => {
+      if (  v.name.toLowerCase() === name.toLowerCase() ) {
+        index = i;
+        return;
+      }
+    });
+    this.servers.splice(index, 1);
   }
 
 }
