@@ -22,11 +22,11 @@ export class AppComponent {
   }
 
   getBackground(index: number) {
-    return index >= 5 ? '#007bff' : '';
+    return index >= 4 ? '#007bff' : '';
   }
 
   getClass(index: number) {
-    const addClass = index >= 5;
+    const addClass = index >= 4;
     return {
       'text-light': addClass,
       'p-1': addClass,
