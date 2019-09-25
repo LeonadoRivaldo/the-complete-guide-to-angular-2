@@ -1,0 +1,27 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <ol class="p-0 pl-3">
+        <li><s>Add A button which says 'Display Details'</s></li>
+        <li><s>Add a paragraph with any content of your choice (e.g. 'Secret Password = tuna')</s></li>
+        <li><s>Toggle the displaying of that paragraph with the button created in the first step</s></li>
+        <li><s>Log all button clicks in an array and output that array below the secret paragraph (maybe log a timestamp or simply an incrementing number)</s></li>
+        <li><s>Starting at the 5th log item, give all future log items a blue background (via ngStyle) and white color (ngClass)</s></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex align-items-center">
+          <button class="btn btn-outline-secondary" (click)="displayDetails()">Display Details</button>
+          <p class="text-danger m-0 ml-2" *ngIf="showDetails">Secret Password = tuna</p>
+      </div>
+      <p class="text-secondary mt-3">
+        <span *ngFor="let click of countClicks;let i = index" style="max-width: fit-content;" [ngStyle]="{ background: getBackground(i) }" [ngClass]="getClass(i)" class="d-block">Clicked @{{ click | date:'dd/MM/yy hh:mm:ss' }}</span>
+      </p>
+    </div>
+  </div>
+</div>
