@@ -1,9 +1,15 @@
-<mcb-header></mcb-header>
+<section id="main-content">
+  <mcb-header #header></mcb-header>
 
-<div class="container">
-  <div class="row">
-    <div class="col"><mcb-shopping></mcb-shopping></div>
-    <div class="col"><mcb-recipes></mcb-recipes></div>
+  <div class="container">
+    <div class="row">
+      <div class="col" *ngIf="shoppingList"><mcb-shopping></mcb-shopping></div>
+      <div class="col" *ngIf="recipes"><mcb-recipes></mcb-recipes></div>
+    </div>
   </div>
-</div>
+</section>
+
+
+
+
 

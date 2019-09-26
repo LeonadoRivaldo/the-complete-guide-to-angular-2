@@ -1,3 +1,8 @@
-<p>
-  <span class='btn btn-outline-primary btn-sm ml-2' *ngFor="let item of menu.items"> {{item.label}} </span>
-</p>
+<nav class="nav nav-pills">
+  <a class="nav-item nav-link"
+    [class.active]="isActive( item.link ) === true"
+    (click)="navigate($event, item.link)"
+    *ngFor="let item of menu.items" href="#">
+      {{item.label}}
+  </a>
+</nav>

@@ -24,7 +24,7 @@ export default class Menu implements IMenu {
   }
 
   get items(): IMenuItem[] {
-    return this.orderByOrder();
+    return this.orderByOrder().filter(i => !i.deactivated);
   }
 
   set items(items: IMenuItem[]) {
