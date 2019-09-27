@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import Menu from 'src/app/bo/models/menu.component.model';
 import { MENU_HEADER } from './menu.mock';
 import { PageStateService } from 'src/app/shared/services/page-state.service';
@@ -11,6 +11,8 @@ import { PageStateService } from 'src/app/shared/services/page-state.service';
 })
 export class MenuHeaderComponent implements OnInit {
 
+  showMenu: boolean;
+  menuOut: boolean;
   menu: Menu;
 
   constructor(private pageStateService: PageStateService) { }
@@ -26,6 +28,29 @@ export class MenuHeaderComponent implements OnInit {
 
   isActive( link: string ) {
     return this.pageStateService.state === link;
+  }
+
+  @HostListener('window:click', ['$event.target'])
+  tooglePane(target) {
+    console.count('tooglePane');
+    console.log(target);
+
+    // TODO : continue
+
+
+  }
+
+  toogleMenu() {
+
+    if (!this.showMenu) {
+      this.showMenu = true;
+    } else {
+      this.menuOut = true;
+      setTimeout(() => {
+        this.menuOut = false;
+        this.showMenu = false;
+      }, 500);
+    }
   }
 
 

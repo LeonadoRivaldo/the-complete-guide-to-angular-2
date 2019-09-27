@@ -1,5 +1,12 @@
-<nav class="nav nav-pills">
-  <a class="nav-item nav-link"
+<button type="button" class="btn btn-outline-secondary d-flex d-sm-none"
+  (click)="toogleMenu()">
+    <i class="fas fa-bars"></i>
+</button>
+<nav class="nav nav-pills d-none d-sm-flex"
+  [class.in]="showMenu"
+  [class.out]="menuOut"
+  [class.show-menu]="showMenu">
+  <a class="nav-item nav-link btn btn-outline-primary"
     [class.active]="isActive( item.link ) === true"
     (click)="navigate($event, item.link)"
     *ngFor="let item of menu.items" href="#">
