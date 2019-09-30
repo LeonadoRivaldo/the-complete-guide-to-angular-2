@@ -11,6 +11,7 @@ import { RecipesModule } from './recipes/recipes.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { MenuHeaderComponent } from './header/menu-header/menu-header.component';
+import { SharedModule } from './shared/shared.module';
 
 
 
