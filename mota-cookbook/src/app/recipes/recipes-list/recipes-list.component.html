@@ -1,2 +1,5 @@
-<p>recipe-list works!</p>
-<mcb-recipes-list-item></mcb-recipes-list-item>
+<div class="list-group">
+  <div class="p-0 list-group-item list-group-item-action" *ngFor="let recipe of recipes;let $last = last">
+      <mcb-recipes-list-item [recipe]="recipe"></mcb-recipes-list-item>
+  </div>
+</div>

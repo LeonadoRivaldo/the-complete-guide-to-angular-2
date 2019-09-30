@@ -4,7 +4,7 @@ import { Injectable, EventEmitter, OnInit } from '@angular/core';
   providedIn: 'root'
 })
 export class PageStateService {
-  private static state = 'shopping-list';
+  private static state = 'recipes-list';
   pageStateChange: EventEmitter<string>;
 
   constructor() {

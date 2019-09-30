@@ -1,6 +1,7 @@
 <button type="button" class="btn btn-outline-secondary d-flex d-sm-none"
   (click)="toogleMenu()">
-    <i class="fas fa-bars"></i>
+    <i *ngIf="!showMenu" class="fas fa-bars"></i>
+    <i *ngIf="showMenu" class="fas fa-times"></i>
 </button>
 <nav class="nav nav-pills d-none d-sm-flex"
   [class.in]="showMenu"

@@ -1,1 +1,19 @@
-<p>recipes-list-item works!</p>
+<div class="recipe-list-item">
+  <div class="recipe-list-item-head d-flex align-items-center w-100">
+    <img [src]="recipe.imagePath" class="d-none d-md-flex mr-3 reponsive-image image" [alt]="alt" [attr.aria-label]="alt" />
+    <h5 class="mt-0 title" [class.mb-0]="!recipe.description" >{{recipe.name}}</h5>
+  </div>
+
+
+  <div class="media-body recipe-list-item-body">
+
+    <p *ngIf="recipe.description" class="text-nowrap text-overflow-hidden text-overflow-ellipsis text">
+      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
+      ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus
+      viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
+      lacinia congue felis in faucibus.
+    </p>
+  </div>
+</div>
+
+

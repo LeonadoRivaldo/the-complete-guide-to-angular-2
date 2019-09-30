@@ -32,12 +32,8 @@ export class MenuHeaderComponent implements OnInit {
 
   @HostListener('window:click', ['$event.target'])
   tooglePane(target) {
-    console.count('tooglePane');
-    console.log(target);
-
+    console.log('MenuHeaderComponent:@HostListener:tooglePane => implement it later!');
     // TODO : continue
-
-
   }
 
   toogleMenu() {

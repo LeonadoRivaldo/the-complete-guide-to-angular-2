@@ -1,0 +1,10 @@
+.text {
+  &-overflow {
+    &-hidden{
+      overflow: hidden!important;
+    }
+    &-ellipsis {
+      text-overflow: ellipsis!important;
+    }
+  }
+}
