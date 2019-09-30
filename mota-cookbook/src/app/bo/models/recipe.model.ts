@@ -25,3 +25,6 @@ export class Recipe implements IRecipe {
     this.recipeSteps = recipeSteps;
   }
 }
+
+
+// TODO: have to create a IRecipelistItem
