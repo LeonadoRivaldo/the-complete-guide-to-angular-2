@@ -6,12 +6,25 @@
   height:100%;
 }
 .item-list-item{
+  transition: all ease 0.5s;
   flex:0 0 100%;
   padding: .75rem 1.25rem;
   cursor: pointer;
   border: 1px solid rgba(0,0,0,.125);
 
-  &:hover{
+  &.active{
+    background: $bootstrap-blue;
+    .item-list-item{
+      &-head{
+        .title{ color: #fff; }
+      }
+      &-body{
+        .text{ color: #fff; }
+      }
+    }
+  }
+
+  &:not(.active):hover{
     border-color: $bootstrap-blue;
 
     .item-list-item{

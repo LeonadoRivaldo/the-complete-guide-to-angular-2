@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListItemComponent } from './list-item.component';
+import ListItem from './list-item.compenent.model';
 
 describe('ListItemComponent', () => {
   let component: ListItemComponent;
@@ -8,7 +9,8 @@ describe('ListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListItemComponent ]
+      declarations: [ ListItemComponent ],
+      imports:[]
     })
     .compileComponents();
   }));
@@ -16,6 +18,8 @@ describe('ListItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListItemComponent);
     component = fixture.componentInstance;
+    component.item = new ListItem('testing');
+    component.item.icon = { type: 'IMG', value: '' };
     fixture.detectChanges();
   });
 

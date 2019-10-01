@@ -7,18 +7,23 @@ import { ShoppingListDetailsComponent } from './shopping-list-details/shopping-l
 import { ShoppingListDetailsViewComponent } from './shopping-list-details/shopping-list-details-view/shopping-list-details-view.component';
 import { ShoppingListDetailsFormComponent } from './shopping-list-details/shopping-list-details-form/shopping-list-details-form.component';
 
-const COMPONENTS = [
-  ShoppingComponent,
-  ShoppingListComponent,
-  ShoppingListItemComponent,
-  ShoppingListDetailsComponent,
-  ShoppingListDetailsViewComponent,
-  ShoppingListDetailsFormComponent,
-];
-
 @NgModule({
-  declarations: COMPONENTS,
-  exports: COMPONENTS,
+  declarations: [
+    ShoppingComponent,
+    ShoppingListComponent,
+    ShoppingListItemComponent,
+    ShoppingListDetailsComponent,
+    ShoppingListDetailsViewComponent,
+    ShoppingListDetailsFormComponent,
+  ],
+  exports: [
+    ShoppingComponent,
+    ShoppingListComponent,
+    ShoppingListItemComponent,
+    ShoppingListDetailsComponent,
+    ShoppingListDetailsViewComponent,
+    ShoppingListDetailsFormComponent,
+  ],
   imports: [
     CommonModule
   ]

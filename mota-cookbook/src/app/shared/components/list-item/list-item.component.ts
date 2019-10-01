@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Recipe } from 'src/app/bo/models/recipe.model';
+import { Component, OnInit, Input, HostListener, Output, EventEmitter } from '@angular/core';
+import { IListITem } from './list-item.compenent.model';
 
 @Component({
   selector: 'mcb-list-item',
@@ -8,16 +8,28 @@ import { Recipe } from 'src/app/bo/models/recipe.model';
 })
 export class ListItemComponent implements OnInit {
 
-  @Input() item: Recipe;
+  @Input() item: IListITem;
+  @Input() active: boolean;
 
-  constructor() { }
+  @Output() itemClicked: EventEmitter<IListITem>;
 
-  ngOnInit() {
+  constructor() {
+    this.itemClicked = new EventEmitter();
   }
 
+  ngOnInit() {}
+
+  @HostListener('click', ['$event'])
+  onClick($event: Event) {
+    this.itemClicked.emit(this.item);
+  }
 
   get alt() {
-    return  'Image for ' + this.item.name;
+    return  'Image for ' + this.item.title;
+  }
+
+  get IMG() {
+    return this.item.icon.type === 'IMG' ? this.item.icon.value : null;
   }
 
 }

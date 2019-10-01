@@ -1,5 +1,5 @@
 <div class="list-group">
-  <div class="p-0 list-group-item list-group-item-action" *ngFor="let recipe of recipes;let $last = last">
-      <mcb-list-item [item]="recipe"></mcb-list-item>
+  <div class="p-0 list-group-item list-group-item-action" [class.mb-1]=!$last  *ngFor="let recipe of listItems;let $last = last">
+      <mcb-list-item [item]="recipe" [active]="isSelected(recipe.uuid)" (itemClicked)="details($event)"></mcb-list-item>
   </div>
 </div>
