@@ -3,8 +3,15 @@
 
   <div class="container pt-3">
     <div class="row">
-      <div class="col" *ngIf="shoppingList"><mcb-shopping></mcb-shopping></div>
-      <div class="col" *ngIf="recipes"><mcb-recipes></mcb-recipes></div>
+      <div class="col-12">
+        <h4> {{ header.title }} </h4>
+      </div>
+      <div class="col" *ngIf="shoppingList">
+        <mcb-shopping></mcb-shopping>
+      </div>
+      <div class="col" *ngIf="recipes">
+        <mcb-recipes></mcb-recipes>
+      </div>
     </div>
   </div>
 </section>

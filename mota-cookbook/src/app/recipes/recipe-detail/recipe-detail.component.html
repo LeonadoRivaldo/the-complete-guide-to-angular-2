@@ -1,3 +1,21 @@
-<p>recipe-detail works!</p>
-<mcb-recipe-detail-view></mcb-recipe-detail-view>
-<mcb-recipe-detail-form></mcb-recipe-detail-form>
+<section id="recipe-detail-content" *ngIf="recipe; else noRecipe">
+  <header class="recipe-detail-content-header d-flex align-items-center">
+      <h4 class="mb-0"> {{recipe.name}} </h4>
+      <div class="btn-group ml-auto">
+        <button class="btn btn-outline-primary"> Edit </button>
+      </div>
+  </header>
+  <hr class="clearfix">
+  <main class="recipe-detail-content-body" [class.view]="view"  [class.edit]="edit">
+    <mcb-recipe-detail-view *ngIf="view"></mcb-recipe-detail-view>
+    <mcb-recipe-detail-form *ngIf="edit"></mcb-recipe-detail-form>
+  </main>
+</section>
+
+<ng-template #noRecipe>
+  <section id="recipe-detail-content">
+    <h6>No recipe selected</h6>
+  </section>
+</ng-template>
+
+
