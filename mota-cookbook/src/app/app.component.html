@@ -1,15 +1,16 @@
 <section id="main-content">
-  <mcb-header #header></mcb-header>
+  <mcb-header></mcb-header>
 
   <div class="container pt-3">
     <div class="row">
       <div class="col-12">
-        <h4> {{ header.title }} </h4>
+        <h4> {{ title }} </h4>
+        <hr class="mt-1 mb-3">
       </div>
-      <div class="col" *ngIf="shoppingList">
+      <div class="col" *ngIf="shoppingList === true">
         <mcb-shopping></mcb-shopping>
       </div>
-      <div class="col" *ngIf="recipes">
+      <div class="col" *ngIf="recipes === true">
         <mcb-recipes></mcb-recipes>
       </div>
     </div>

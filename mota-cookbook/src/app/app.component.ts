@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageStateService } from './shared/services/page-state.service';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'mcb-root',
@@ -7,18 +8,30 @@ import { PageStateService } from './shared/services/page-state.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private pageStateService: PageStateService) { }
+  pageState: string;
+  title: string;
+  recipes = false;
+  shoppingList = false;
 
-  private get pageState(): string {
-    return this.pageStateService.state;
+
+  constructor(private pageStateService: PageStateService) {
+    pageStateService.pageTileChange$.subscribe(
+      (title) => {
+        setTimeout(() => this.title = title);
+      }
+    );
+
+    pageStateService.pageStateChange$.subscribe(
+      (state) => {
+        setTimeout(() => this.setPageState(state));
+      }
+    );
   }
 
-  get recipes(): boolean {
-    return this.pageState === 'recipes-list';
-  }
-
-  get shoppingList(): boolean {
-    return this.pageState === 'shopping-list';
+  private setPageState(state) {
+    this.pageState = state;
+    this.shoppingList = state === 'shopping-list';
+    this.recipes = state === 'recipes-list';
   }
 
   ngOnInit() {}

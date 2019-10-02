@@ -1,23 +1,27 @@
 import { Injectable, EventEmitter, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PageStateService {
-  private static state = 'recipes-list';
-  pageStateChange: EventEmitter<string>;
 
-  constructor() {
-    this.pageStateChange = new EventEmitter();
+  constructor() {}
+
+  private pageState = new Subject<string>();
+  private pageTitle = new Subject<string>();
+
+  pageStateChange$ = this.pageState.asObservable();
+  pageTileChange$ = this.pageTitle.asObservable();
+
+  changePageState( state: string ) {
+    this.pageState.next(state);
   }
 
-  get state() {
-    return PageStateService.state;
+  setPageTitle( title: string ) {
+    this.pageTitle.next(title);
   }
 
-  set state(state: string) {
-    PageStateService.state = state;
-    this.pageStateChange.emit(this.state);
-  }
+
 
 }

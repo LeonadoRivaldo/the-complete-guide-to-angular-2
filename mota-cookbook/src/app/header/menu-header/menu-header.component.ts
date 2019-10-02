@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import Menu from 'src/app/bo/models/menu.component.model';
 import { MENU_HEADER } from './menu.mock';
 import { PageStateService } from 'src/app/shared/services/page-state.service';
+import { TouchSequence } from 'selenium-webdriver';
 
 
 @Component({
@@ -14,20 +15,29 @@ export class MenuHeaderComponent implements OnInit {
   showMenu: boolean;
   menuOut: boolean;
   menu: Menu;
+  pageState: string;
 
-  constructor(private pageStateService: PageStateService) { }
+  constructor(private pageStateService: PageStateService) {
+    pageStateService.pageStateChange$.subscribe(
+      (state) => {
+        this.pageState = state;
+      }
+    );
+  }
 
   ngOnInit() {
     this.menu = new Menu(MENU_HEADER);
+    this.startState();
   }
 
   navigate($event: Event, link: string) {
     $event.preventDefault();
-    this.pageStateService.state = link;
+    this.pageStateService.changePageState(link);
+    this.pageStateService.setPageTitle( this.menu.items.find((i) => i.link === link ).label );
   }
 
   isActive( link: string ) {
-    return this.pageStateService.state === link;
+    return this.pageState === link;
   }
 
   @HostListener('window:click', ['$event.target'])
@@ -40,7 +50,6 @@ export class MenuHeaderComponent implements OnInit {
   }
 
   toogleMenu() {
-
     if (!this.showMenu) {
       this.showMenu = true;
     } else {
@@ -52,5 +61,10 @@ export class MenuHeaderComponent implements OnInit {
     }
   }
 
+  private startState() {
+    const item = this.menu.items.find(i => i.link === 'recipes-list');
+    this.pageStateService.changePageState(item.link);
+    this.pageStateService.setPageTitle( item.label );
+  }
 
 }

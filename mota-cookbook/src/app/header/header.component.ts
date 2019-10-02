@@ -1,5 +1,5 @@
-import { Component, OnInit, ContentChild } from '@angular/core';
-import { MenuHeaderComponent } from './menu-header/menu-header.component';
+import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'mcb-header',
@@ -7,9 +7,6 @@ import { MenuHeaderComponent } from './menu-header/menu-header.component';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  title: string = 'TEMP';
-  @ContentChild('menu', { static: false }) menu: MenuHeaderComponent;
 
   constructor() { }
 

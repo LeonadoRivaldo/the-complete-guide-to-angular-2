@@ -1,0 +1,25 @@
+
+#recipe-detail-content{
+  .recipe-detail-content{
+    &-header{
+      h4{}
+      .btn-group{
+        #recipe-menu{}
+        .dropdown-menu{
+          left:initial;
+          right:0;
+          .dropdown-item{}
+        }
+      }
+
+    }
+    &-body{
+      .view{}
+      .edit{}
+    }
+  }
+}
+
+
+
+
