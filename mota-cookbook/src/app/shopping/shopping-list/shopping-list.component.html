@@ -1,2 +1,11 @@
-<p>shopping-list works!</p>
-<mcb-shopping-list-item></mcb-shopping-list-item>
+<div class="list-group mcb">
+  <div class="p-0 list-group-item list-group-item-action"
+    [class.mb-1]=!$last
+    *ngFor="let list of listItems;let $last = last">
+      <mcb-list-item
+        [item]="list"
+        [active]="isSelected(list.uuid)"
+        (itemClicked)="details($event)">
+      </mcb-list-item>
+  </div>
+</div>

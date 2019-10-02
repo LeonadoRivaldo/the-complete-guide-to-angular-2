@@ -26,7 +26,8 @@ import { SharedModule } from './shared/shared.module';
     ShoppingModule,
     BrowserModule,
     CommonModule,
-    NgbModule
+    NgbModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

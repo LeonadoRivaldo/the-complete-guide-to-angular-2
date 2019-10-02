@@ -1,6 +1,5 @@
 import RecipeIngredient from './recipe-ingredient.model';
 import * as uuid from 'uuid';
-import { from } from 'rxjs';
 export interface RecipeStep {
   uuid: string;
   done: boolean;
@@ -25,6 +24,7 @@ export class Recipe implements IRecipe {
   recipeSteps: RecipeStep[] = [];
   uuid: string;
 
+  // tslint:disable-next-line: variable-name
   constructor( name: string, ingredients: RecipeIngredient[],  recipeSteps: RecipeStep[], _uuid?: string ) {
     this.name = name;
     this.ingredients = ingredients;

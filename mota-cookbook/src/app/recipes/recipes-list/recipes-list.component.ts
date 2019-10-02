@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/bo/models/recipe.model';
 import ListItem, { IListITem } from 'src/app/shared/components/list-item/list-item.compenent.model';
 import { RecipeDetailService } from '../recipe-detail/recipe-detail.service';
+import { Icon } from 'src/app/bo/models/icon.model';
 
 @Component({
   selector: 'mcb-recipes-list',
@@ -33,8 +34,10 @@ export class RecipesListComponent implements OnInit {
   }
 
   get listItems(): IListITem[] {
-    return this.recipes.map((r) => {
-      const obj = new ListItem(r.name, r.description, { type: 'IMG', value: r.imagePath }, r.uuid);
+    return this.recipes.map((recipe) => {
+      const { name, description, uuid, imagePath } = recipe;
+      const icon: Icon = { type: 'IMG', value: imagePath };
+      const obj = new ListItem(name, description, icon, uuid);
       return obj;
     });
   }
