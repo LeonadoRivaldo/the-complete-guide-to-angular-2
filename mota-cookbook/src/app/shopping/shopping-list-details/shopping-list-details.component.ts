@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShoppingListDetailService } from './shopping-list-detail.service';
 import ShoppingListItem from 'src/app/bo/models/shopping-list-item.model';
 import { ShoppingList } from 'src/app/bo/models/shopping-list.model';
+import ListItem from 'src/app/shared/components/list-item/list-item.compenent.model';
 
 @Component({
   selector: 'mcb-shopping-list-details',
@@ -21,6 +22,12 @@ export class ShoppingListDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  parseToListItemList() {
+    return this.list.items.map(item => {
+      return new ListItem(item.name);
+    });
   }
 
 }

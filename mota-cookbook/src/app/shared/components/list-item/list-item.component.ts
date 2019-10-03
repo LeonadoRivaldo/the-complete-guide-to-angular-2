@@ -29,10 +29,16 @@ export class ListItemComponent implements OnInit {
   }
 
   get IMG() {
+    if (!this.item.icon) {
+      return null;
+    }
     return this.item.icon.type === 'IMG' ? this.item.icon.value : null;
   }
 
   get ICON() {
+    if (!this.item.icon) {
+      return null;
+    }
     return this.item.icon.type === 'ICON' ? this.item.icon.value : null;
   }
 
