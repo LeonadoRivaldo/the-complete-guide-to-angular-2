@@ -3,6 +3,7 @@ import ListItem, { IListITem } from 'src/app/shared/components/list-item/list-it
 import ShoppingListItem from 'src/app/bo/models/shopping-list-item.model';
 import { Icon } from 'src/app/bo/models/icon.model';
 import { IShoppingList, ShoppingList } from 'src/app/bo/models/shopping-list.model';
+import { ShoppingListDetailService } from '../shopping-list-details/shopping-list-detail.service';
 
 @Component({
   selector: 'mcb-shopping-list',
@@ -10,10 +11,16 @@ import { IShoppingList, ShoppingList } from 'src/app/bo/models/shopping-list.mod
   styleUrls: ['./shopping-list.component.scss']
 })
 export class ShoppingListComponent implements OnInit {
-  selected: any;
+  selected: ShoppingList;
   lists: IShoppingList[];
 
-  constructor() { }
+  constructor(private shoppingListDetailService: ShoppingListDetailService) {
+    shoppingListDetailService.shoppingListIsSelected$.subscribe(
+      (list) => {
+        this.selected = list;
+      }
+    );
+  }
 
   ngOnInit() {
     const list: ShoppingListItem[] = [
@@ -48,6 +55,8 @@ export class ShoppingListComponent implements OnInit {
     if (!listItem.uuid) {
       return;
     }
+
+    this.shoppingListDetailService.selectShoppingList( this.lists.find( l => l.uuid === listItem.uuid ) );
   }
 
 

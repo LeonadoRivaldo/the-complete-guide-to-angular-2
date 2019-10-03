@@ -1,0 +1,28 @@
+<header class="detail-header d-flex align-items-center">
+    <h4 class="mb-0"> {{ title }} </h4>
+    <div class="btn-group ml-auto" role="group">
+      <button id="recipe-menu" class="btn rounded"
+        [class.btn-outline-secondary]="!menuOpen"
+        [class.btn-secondary]="menuOpen"
+        (click)="toogleMenu()">
+          Menu
+          <i class="fas"
+          [class.fa-caret-down]="!menuOpen"
+          [class.fa-caret-up]="menuOpen">
+          </i>
+      </button>
+      <div class="dropdown-menu" [class.show]="menuOpen" aria-label="Recipe menu">
+        <span *ngIf="view">
+          <a class="dropdown-item cursor-pointer" (click)="edit()"> <i class="fas fa-edit"></i> Edit</a>
+        </span>
+        <span *ngIf="edit">
+          <a class="dropdown-item cursor-pointer" (click)="view()"> <i class="fas fa-times"></i> cancel</a>
+          <a class="dropdown-item cursor-pointer text-success" (click)="save()"> <i class="fas fa-save"></i> Save</a>
+        </span>
+        <a class="dropdown-item cursor-pointer text-danger" (click)="delete()"> <i class="far fa-trash-alt"></i> Delete</a>
+      </div>
+    </div>
+</header>
+
+<ng-content select="[separator]"></ng-content>
+

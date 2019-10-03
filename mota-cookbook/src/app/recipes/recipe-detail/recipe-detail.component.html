@@ -24,7 +24,19 @@
         </div>
       </div>
   </header>
-  <hr class="clearfix">
+
+  <mcb-detail-header
+    [title]="recipe.name"
+    (eventEdit)="editRecipe()"
+    (eventView)="viewRecipe()"
+    (eventDelete)="deleteRecipe()"
+    (eventSave)="saveRecipe()">
+      <hr separator class="clearfix">
+  </mcb-detail-header>
+
+
+
+
   <main class="recipe-detail-content-body" [class.view]="view"  [class.edit]="edit">
     <mcb-recipe-detail-view *ngIf="view"></mcb-recipe-detail-view>
     <mcb-recipe-detail-form *ngIf="edit"></mcb-recipe-detail-form>
