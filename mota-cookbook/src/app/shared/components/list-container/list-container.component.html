@@ -1,0 +1,10 @@
+<div class="list-group mcb">
+  <mcb-list-item
+    class="p-0 list-group-item list-group-item-action"
+    *ngFor="let list of items;let $last = last"
+    [item]="list"
+    [class.mb-1]=!$last
+    [active]="isSelected(list.uuid)"
+    (itemClicked)="selectItem($event)">
+  </mcb-list-item>
+</div>

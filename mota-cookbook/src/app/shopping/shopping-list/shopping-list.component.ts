@@ -32,13 +32,8 @@ export class ShoppingListComponent implements OnInit {
     this.lists = [
       new ShoppingList('Fruits', list )
     ];
-
-
   }
 
-  isSelected( uuid: string ): boolean {
-    return this.selected ? this.selected.uuid === uuid : false ;
-  }
 
   get listItems(): IListITem[] {
     return this.lists.map((list) => {
