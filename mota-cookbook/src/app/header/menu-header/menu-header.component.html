@@ -1,16 +1,18 @@
-<button type="button" class="btn btn-outline-secondary d-flex d-sm-none"
-  (click)="toogleMenu()">
-    <i *ngIf="!showMenu" class="fas fa-bars"></i>
-    <i *ngIf="showMenu" class="fas fa-times"></i>
-</button>
-<nav class="nav nav-pills d-none d-sm-flex"
-  [class.in]="showMenu"
-  [class.out]="menuOut"
-  [class.show-menu]="showMenu">
-  <a class="nav-item nav-link btn btn-outline-primary"
-    [class.active]="isActive( item.link ) === true"
-    (click)="navigate($event, item.link)"
-    *ngFor="let item of menu.items" href="#">
-      {{item.label}}
-  </a>
-</nav>
+<section class="menu-container">
+  <button type="button" class="menu-btn btn btn-outline-secondary d-flex d-sm-none"
+    (click)="toogleMenu()">
+      <i *ngIf="!showMenu" class="fas fa-bars btn-ico"></i>
+      <i *ngIf="showMenu" class="fas fa-times btn-ico"></i>
+  </button>
+  <nav class="nav nav-pills d-none d-sm-flex nav-menu"
+    [class.in]="showMenu"
+    [class.out]="menuOut"
+    [class.show-menu]="showMenu">
+    <a class="nav-item nav-link btn btn-outline-primary"
+      [class.active]="isActive( item.link ) === true"
+      (click)="navigate($event, item.link)"
+      *ngFor="let item of menu.items" href="#">
+        {{item.label}}
+    </a>
+  </nav>
+</section>

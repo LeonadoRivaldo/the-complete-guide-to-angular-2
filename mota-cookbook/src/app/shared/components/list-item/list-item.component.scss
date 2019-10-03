@@ -17,6 +17,7 @@
     .item-list-item{
       &-head{
         .title{ color: #fff; }
+        .icon{ color:#fff; }
       }
       &-body{
         .text{ color: #fff; }
@@ -30,6 +31,7 @@
     .item-list-item{
       &-head{
         .title{ color: $bootstrap-blue; }
+        .icon{ color: $bootstrap-blue; }
       }
       &-body{
         .text{ color: $bootstrap-blue; }

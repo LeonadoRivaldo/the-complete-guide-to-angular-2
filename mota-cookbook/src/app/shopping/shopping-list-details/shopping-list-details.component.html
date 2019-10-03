@@ -1,1 +1,16 @@
-<p>shopping-list-details works! {{ list | json }}</p>
+<section id="recipe-detail-content" *ngIf="list; else noList">
+  <mcb-detail-header [title]="list.listName">
+    <!-- <button class="btn btn-outline-primary btn-custom" (click)="toShoppingList()"> Create shopping list </button> -->
+    <hr separator class="clearfix">
+  </mcb-detail-header>
+  <main class="recipe-detail-content-body">
+    list details
+  </main>
+</section>
+
+
+<ng-template #noList>
+  <section id="recipe-detail-content">
+    <h6>No shopping list selected</h6>
+  </section>
+</ng-template>

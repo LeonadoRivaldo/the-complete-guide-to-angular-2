@@ -1,7 +1,8 @@
 <div class="item-list-item rounded" [ngClass]="{active:active}">
   <div class="item-list-item-head d-flex align-items-center w-100">
     <img [src]="IMG" *ngIf="IMG" class="d-none d-md-flex mr-3 img-fluid image" [alt]="alt" [attr.aria-label]="alt" />
-    <h5 class="mt-0 title" [class.mb-0]="!item.subtitle" >{{item.title}}</h5>
+    <div *ngIf="ICON" class="icon mr-1 {{ICON}}"></div>
+    <h5 class="mt-0 mb-0 title">{{item.title}}</h5>
   </div>
 
 

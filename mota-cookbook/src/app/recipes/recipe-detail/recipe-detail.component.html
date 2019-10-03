@@ -1,42 +1,14 @@
 <section id="recipe-detail-content" *ngIf="recipe; else noRecipe">
-  <header class="recipe-detail-content-header d-flex align-items-center">
-      <h4 class="mb-0"> {{recipe.name}} </h4>
-      <div class="btn-group ml-auto" role="group">
-        <button id="recipe-menu" class="btn rounded"
-          [class.btn-outline-secondary]="!menuOpen"
-          [class.btn-secondary]="menuOpen"
-          (click)="toogleMenu()">
-            Menu
-            <i class="fas"
-            [class.fa-caret-down]="!menuOpen"
-            [class.fa-caret-up]="menuOpen">
-            </i>
-        </button>
-        <div class="dropdown-menu" [class.show]="menuOpen" aria-label="Recipe menu">
-          <span *ngIf="view">
-            <a class="dropdown-item cursor-pointer" (click)="editRecipe()"> <i class="fas fa-edit"></i> Edit</a>
-          </span>
-          <span *ngIf="edit">
-            <a class="dropdown-item cursor-pointer" (click)="viewRecipe()"> <i class="fas fa-times"></i> cancel</a>
-            <a class="dropdown-item cursor-pointer text-success" (click)="saveRecipe()"> <i class="fas fa-save"></i> Save</a>
-          </span>
-          <a class="dropdown-item cursor-pointer text-danger" (click)="deleteRecipe()"> <i class="far fa-trash-alt"></i> Delete</a>
-        </div>
-      </div>
-  </header>
-
   <mcb-detail-header
     [title]="recipe.name"
+    [state]="detailState"
     (eventEdit)="editRecipe()"
     (eventView)="viewRecipe()"
     (eventDelete)="deleteRecipe()"
     (eventSave)="saveRecipe()">
+      <button class="btn btn-outline-primary btn-custom" (click)="toShoppingList()"> Create shopping list </button>
       <hr separator class="clearfix">
   </mcb-detail-header>
-
-
-
-
   <main class="recipe-detail-content-body" [class.view]="view"  [class.edit]="edit">
     <mcb-recipe-detail-view *ngIf="view"></mcb-recipe-detail-view>
     <mcb-recipe-detail-form *ngIf="edit"></mcb-recipe-detail-form>

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeDetailService } from './recipe-detail.service';
 import { Recipe } from 'src/app/bo/models/recipe.model';
-import { DETAIL_STATE } from './recipe-detail.model';
-
+import { VIEW_DETAIL_STATE } from '../../bo/models/view-detail-state.model';
 
 // TODO: clean recipe selection buttom
 
@@ -16,19 +15,19 @@ export class RecipeDetailComponent implements OnInit {
 
   menuOpen: boolean;
   recipe: Recipe;
-  private detailState: DETAIL_STATE;
+  detailState: VIEW_DETAIL_STATE;
 
   get view() {
-    return this.detailState === DETAIL_STATE.view;
+    return this.detailState === VIEW_DETAIL_STATE.view;
   }
   get edit() {
-    return this.detailState === DETAIL_STATE.edit;
+    return this.detailState === VIEW_DETAIL_STATE.edit;
   }
 
-  set state(  state: DETAIL_STATE ) {
+  set state(  state: VIEW_DETAIL_STATE ) {
     this.detailState =  state;
   }
-  get state(): DETAIL_STATE {
+  get state(): VIEW_DETAIL_STATE {
     return this.detailState;
   }
 
@@ -39,23 +38,26 @@ export class RecipeDetailComponent implements OnInit {
       }
     );
 
-    this.state = DETAIL_STATE.view;
+    this.state = VIEW_DETAIL_STATE.view;
   }
 
   toogleMenu() {
     this.menuOpen = !this.menuOpen;
   }
 
+  toShoppingList() {
+    alert('Create shopping list!');
+  }
 
   /**
    * RECIPE MANAGER
    */
   editRecipe() {
-    this.state = DETAIL_STATE.edit;
+    this.state = VIEW_DETAIL_STATE.edit;
     // TODO: more actions
   }
   viewRecipe() {
-    this.state = DETAIL_STATE.view;
+    this.state = VIEW_DETAIL_STATE.view;
     // TODO: more actions
   }
   deleteRecipe() {

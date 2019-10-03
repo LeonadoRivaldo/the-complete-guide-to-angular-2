@@ -32,4 +32,8 @@ export class ListItemComponent implements OnInit {
     return this.item.icon.type === 'IMG' ? this.item.icon.value : null;
   }
 
+  get ICON() {
+    return this.item.icon.type === 'ICON' ? this.item.icon.value : null;
+  }
+
 }

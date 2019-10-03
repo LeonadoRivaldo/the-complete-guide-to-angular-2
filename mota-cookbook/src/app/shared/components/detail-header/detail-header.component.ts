@@ -1,11 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
-export class DetailHeaderMenuOpts {
-  delete = true;
-  edit = true;
-  view = true;
-  save = true;
-}
+import { DetailHeaderMenuOpts } from './detail-header.model';
+import { VIEW_DETAIL_STATE } from 'src/app/bo/models/view-detail-state.model';
 
 
 @Component({
@@ -17,6 +12,9 @@ export class DetailHeaderComponent implements OnInit {
 
   @Input() title: string;
   @Input() menuOpts: DetailHeaderMenuOpts = new DetailHeaderMenuOpts();
+  @Input() set state( state: VIEW_DETAIL_STATE ) {
+    this.toogleState( state );
+  }
 
   @Output() eventEdit: EventEmitter<boolean> = new EventEmitter();
   @Output() eventView: EventEmitter<boolean> = new EventEmitter();
@@ -36,9 +34,9 @@ export class DetailHeaderComponent implements OnInit {
     this.menuOpen = !this.menuOpen;
   }
 
-  toogleState( stateName: string ) {
-    this.viewState = stateName === 'view-state';
-    this.editState = stateName === 'edit-state';
+  toogleState( stateName: VIEW_DETAIL_STATE ) {
+    this.viewState = stateName === VIEW_DETAIL_STATE.view;
+    this.editState = stateName === VIEW_DETAIL_STATE.edit;
   }
 
 
@@ -47,12 +45,12 @@ export class DetailHeaderComponent implements OnInit {
    */
   edit() {
     this.eventEdit.emit(true);
-    this.toogleState( 'edit-state' );
+    this.toogleState( VIEW_DETAIL_STATE.edit );
     // TODO: more actions
   }
   view() {
     this.eventView.emit(true);
-    this.toogleState( 'view-state' );
+    this.toogleState( VIEW_DETAIL_STATE.view );
     // TODO: more actions
   }
   delete() {
