@@ -25,7 +25,24 @@
     }
   }
 
-  &:not(.active):hover{
+  &.selected{
+    border-color: $bootstrap-green;
+    .item-list-item{
+      &-head{
+        .title{ color: $bootstrap-green; }
+        .icon{ color: $bootstrap-green; }
+      }
+      &-body{
+        .text{ color: $bootstrap-green; }
+      }
+    }
+
+    &:hover{
+      border-color: $bootstrap-blue;
+    }
+  }
+
+  &:not(.active):not(.selected):hover{
     border-color: $bootstrap-blue;
 
     .item-list-item{

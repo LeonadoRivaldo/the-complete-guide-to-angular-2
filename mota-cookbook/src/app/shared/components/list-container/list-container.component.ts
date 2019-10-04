@@ -25,7 +25,7 @@ export class ListContainerComponent implements OnInit {
     return this.selectedUiid ? this.selectedUiid === uuid : false ;
   }
 
-  selectItem(item: IListITem ) {
+  selectItem( item: IListITem ) {
     this.itemSelection.emit(item);
   }
 

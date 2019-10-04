@@ -1,4 +1,4 @@
-<div class="item-list-item rounded d-flex align-items-center" [ngClass]="{active:active}">
+<div class="item-list-item rounded d-flex align-items-center" [ngClass]="{active:active, selected: showCheck && item.selected }">
 
   <div class="container-fluid p-0">
     <div class="item-list-item-head d-flex align-items-center w-100">
@@ -14,8 +14,7 @@
     </div>
   </div>
 
-  <i class="fas fa-check" *ngIf="showCheck && item.selected"></i>
-
+  <i class="fas fa-check text-success" *ngIf="showCheck && item.selected"></i>
 </div>
 
 

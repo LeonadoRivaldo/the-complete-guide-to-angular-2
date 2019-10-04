@@ -9,6 +9,8 @@ export interface IShoppingList {
   getItem(itemName: string): ShoppingListItem;
   totalPrice(): number;
   totalItens(): number;
+  boughtItems(): number;
+  boughtAll(): boolean;
 
 }
 
@@ -42,6 +44,12 @@ export class ShoppingList implements IShoppingList {
   }
   totalItens(): number {
     return this.items.length;
+  }
+  boughtItems(): number {
+    return this.items.filter( i => i.bought ).length;
+  }
+  boughtAll(): boolean {
+    return this.boughtItems() === this.totalItens();
   }
 
 }

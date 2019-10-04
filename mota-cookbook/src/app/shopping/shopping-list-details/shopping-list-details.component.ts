@@ -26,13 +26,25 @@ export class ShoppingListDetailsComponent implements OnInit {
 
   parseToListItemList() {
     return this.list.items.map(item => {
-      let subtitle = `${item.quantity} item(s) in stock it's unit price is ${item.price}€ and the stock price is ${item.totalPrice()}€ `;
+      const { name, uuid, bought } = item;
+      const subtitle = `${item.quantity} item(s) in stock it's unit price is ${item.price}€ and the stock price is ${item.totalPrice()}€ `;
 
-      const listitem: ListItem = new ListItem(item.name);
+      const listitem: ListItem = new ListItem(name);
       listitem.subtitle = subtitle;
+      listitem.uuid = uuid;
+      listitem.selected = bought;
 
       return listitem;
     });
   }
+
+  boughtItem(item: ListItem) {
+    this.list.items.forEach((listItem) => {
+      if ( listItem.uuid === item.uuid ) {
+        listItem.bought = !listItem.bought;
+      }
+    });
+  }
+
 
 }

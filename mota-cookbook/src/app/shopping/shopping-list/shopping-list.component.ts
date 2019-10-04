@@ -27,11 +27,15 @@ export class ShoppingListComponent implements OnInit {
       new ShoppingListItem('Apple', 3, 1),
       new ShoppingListItem('Greapes', 2, 1),
       new ShoppingListItem('Peachs', 1, 1),
+      new ShoppingListItem('Meat', 1, 10),
       new ShoppingListItem('Bananas', 12, 1)
     ];
     this.lists = [
       new ShoppingList('Fruits', list )
     ];
+
+    console.log('itens', list);
+
   }
 
 

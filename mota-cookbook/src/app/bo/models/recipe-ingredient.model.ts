@@ -7,5 +7,14 @@ export default class RecipeIngredient implements IGroceriesItem {
   noStock?: boolean;
   price?: number;
   lowStock?: EventEmitter<string>;
+  uuid?: string;
+  bought?: boolean;
+  totalPrice?(): number {
+    throw new Error('Method not implemented.');
+  }
+  checkStock(): void {
+    throw new Error('Method not implemented.');
+  }
+
 }
 

@@ -6,11 +6,13 @@ export default interface IGroceriesItem {
   quantity: number;
 
   uuid?: string;
+  bought?: boolean;
   noStock?: boolean;
   price?: number;
   lowStock?: EventEmitter<string>;
 
   totalPrice?(): number;
+  checkStock(): void;
 }
 
 

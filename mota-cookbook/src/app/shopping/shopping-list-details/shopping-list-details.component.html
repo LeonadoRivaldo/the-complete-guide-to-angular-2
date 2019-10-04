@@ -1,12 +1,40 @@
-<section id="recipe-detail-content" *ngIf="list; else noList">
+<section id="list-detail-content" *ngIf="list; else noList">
   <mcb-detail-header [title]="list.listName">
     <!-- <button class="btn btn-outline-primary btn-custom" (click)="toShoppingList()"> Create shopping list </button> -->
     <hr separator class="clearfix">
   </mcb-detail-header>
-  <main class="recipe-detail-content-body">
-    <mcb-list-container
-      [items]="parseToListItemList(list.items)" [select]="true">
-    </mcb-list-container>
+  <main class="list-detail-content-body">
+
+    <section class="shopping-list">
+      <h5 class="mt-4 mb-2"> Shopping list </h5>
+      <mcb-list-container
+        style="max-height:255px;"
+        [items]="parseToListItemList(list.items)" [select]="true" (itemSelection)="boughtItem($event)">
+      </mcb-list-container>
+
+      <div class="alert mt-2" role="alert" *ngIf="list.boughtItems()"
+        [class.alert-primary]="list.boughtAll() == false"
+        [class.alert-success]="list.boughtAll()">
+          <span class="" *ngIf="list.boughtAll() == false">
+            Added {{ list.boughtItems() }} of {{ list.totalItens() }} items to <i class="fas fa-shopping-cart"></i>
+          </span>
+          <span class="" *ngIf="list.boughtAll()">
+            Got all your items, now go pay <i class="fas fa-money-check-alt"></i>
+          </span>
+      </div>
+    </section>
+
+    <section class="list-information">
+      <h5 class="mt-4 mb-2"> List information </h5>
+      <hr class="mt-0" />
+      <p class="text-help mb-0 total-price">
+        <span class="font-weight-bold">Total price: </span>{{ list.totalPrice() }}€
+      </p>
+      <p class="text-help mb-0 total-items">
+        <span class="font-weight-bold">Total items: </span>{{ list.totalItens() }}
+      </p>
+    </section>
+
   </main>
 </section>
 
