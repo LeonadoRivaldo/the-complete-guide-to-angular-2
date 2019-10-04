@@ -8,6 +8,7 @@ import { IListITem } from './list-item.compenent.model';
 })
 export class ListItemComponent implements OnInit {
 
+  @Input() showCheck = false;
   @Input() item: IListITem;
   @Input() active: boolean;
 
@@ -22,6 +23,10 @@ export class ListItemComponent implements OnInit {
   @HostListener('click', ['$event'])
   onClick($event: Event) {
     this.itemClicked.emit(this.item);
+
+    if (this.showCheck) {
+      this.item.selected = !this.item.selected;
+    }
   }
 
   get alt() {

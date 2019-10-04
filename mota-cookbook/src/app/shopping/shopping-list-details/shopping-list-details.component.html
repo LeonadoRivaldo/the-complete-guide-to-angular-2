@@ -4,7 +4,9 @@
     <hr separator class="clearfix">
   </mcb-detail-header>
   <main class="recipe-detail-content-body">
-    <mcb-list-container [items]="parseToListItemList(list.items)"></mcb-list-container>
+    <mcb-list-container
+      [items]="parseToListItemList(list.items)" [select]="true">
+    </mcb-list-container>
   </main>
 </section>
 

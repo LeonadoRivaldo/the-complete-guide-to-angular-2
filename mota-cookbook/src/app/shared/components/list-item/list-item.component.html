@@ -1,18 +1,21 @@
-<div class="item-list-item rounded" [ngClass]="{active:active}">
-  <div class="item-list-item-head d-flex align-items-center w-100">
-    <img [src]="IMG" *ngIf="IMG" class="d-none d-md-flex mr-3 img-fluid image" [alt]="alt" [attr.aria-label]="alt" />
-    <div *ngIf="ICON" class="icon mr-1 {{ICON}}"></div>
-    <h5 class="mt-0 mb-0 title">{{item.title}}</h5>
+<div class="item-list-item rounded d-flex align-items-center" [ngClass]="{active:active}">
+
+  <div class="container-fluid p-0">
+    <div class="item-list-item-head d-flex align-items-center w-100">
+      <img [src]="IMG" *ngIf="IMG" class="d-none d-md-flex mr-3 img-fluid image" [alt]="alt" [attr.aria-label]="alt" />
+      <div *ngIf="ICON" class="icon mr-1 {{ICON}}"></div>
+      <h5 class="mt-0 mb-0 title">{{item.title}}</h5>
+    </div>
+    <div class="media-body item-list-item-body">
+      <p class="text-nowrap text-overflow-hidden text-overflow-ellipsis text"
+        [innerHtml]="item.subtitle"
+        *ngIf="item.subtitle">
+      </p>
+    </div>
   </div>
 
+  <i class="fas fa-check" *ngIf="showCheck && item.selected"></i>
 
-  <div class="media-body item-list-item-body">
-
-    <p class="text-nowrap text-overflow-hidden text-overflow-ellipsis text"
-      [innerHtml]="item.subtitle"
-      *ngIf="item.subtitle">
-    </p>
-  </div>
 </div>
 
 

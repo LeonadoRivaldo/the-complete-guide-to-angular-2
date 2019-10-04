@@ -6,6 +6,7 @@ export interface IListITem {
   subtitle: string;
   icon: Icon;
   uuid?: string;
+  selected?: boolean;
 }
 
 /**
@@ -20,6 +21,7 @@ export default class ListItem implements IListITem {
   title: string;
   subtitle: string;
   icon: Icon;
+  selected: boolean;
 
   constructor( title: string, subtitle?: string, icon?: Icon, uuid?: string ) {
     this.title = title;

@@ -3,6 +3,7 @@
     class="p-0 list-group-item list-group-item-action"
     *ngFor="let list of items;let $last = last"
     [item]="list"
+    [showCheck]="select"
     [class.mb-1]=!$last
     [active]="isSelected(list.uuid)"
     (itemClicked)="selectItem($event)">

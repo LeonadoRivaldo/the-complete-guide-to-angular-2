@@ -26,7 +26,12 @@ export class ShoppingListDetailsComponent implements OnInit {
 
   parseToListItemList() {
     return this.list.items.map(item => {
-      return new ListItem(item.name);
+      let subtitle = `${item.quantity} item(s) in stock it's unit price is ${item.price}€ and the stock price is ${item.totalPrice()}€ `;
+
+      const listitem: ListItem = new ListItem(item.name);
+      listitem.subtitle = subtitle;
+
+      return listitem;
     });
   }
 

@@ -9,6 +9,7 @@ import { IListITem } from '../list-item/list-item.compenent.model';
 export class ListContainerComponent implements OnInit {
 
   @Input() items: IListITem[];
+  @Input() select = false;
   @Input() selectedUiid: string;
   @Output() itemSelection: EventEmitter<IListITem>;
 

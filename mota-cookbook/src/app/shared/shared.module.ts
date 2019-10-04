@@ -4,7 +4,6 @@ import { ListItemComponent } from './components/list-item/list-item.component';
 import { DetailHeaderComponent } from './components/detail-header/detail-header.component';
 import { ListContainerComponent } from './components/list-container/list-container.component';
 
-
 @NgModule({
   declarations: [
     ListItemComponent,
