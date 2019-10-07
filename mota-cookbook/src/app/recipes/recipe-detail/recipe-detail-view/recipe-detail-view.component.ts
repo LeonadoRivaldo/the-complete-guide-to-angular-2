@@ -24,7 +24,7 @@ export class RecipeDetailViewComponent implements OnInit {
   parseStepsToListItemList() {
     return this.recipe.recipeSteps.map( (step: RecipeStep) => {
       const { description, uuid, done } = step;
-      const listitem: ListItem = new ListItem(description);
+      const listitem: ListItem = new ListItem(description, '', {type: 'IMG', value: ''});
       listitem.uuid = uuid;
       listitem.selected = done;
       return listitem;
@@ -43,7 +43,7 @@ export class RecipeDetailViewComponent implements OnInit {
   parseIngredientsToListItemList() {
     return this.recipe.ingredients.map( (ingredient: RecipeIngredient) => {
       const { name, uuid, obtained } = ingredient;
-      const listitem: ListItem = new ListItem(name);
+      const listitem: ListItem = new ListItem(name, '', {type: 'IMG', value: ''});
       listitem.uuid = uuid;
       listitem.selected = obtained;
       return listitem;

@@ -17,17 +17,12 @@ export interface IListITem {
  * @export
  */
 export default class ListItem implements IListITem {
-  uuid: string;
-  title: string;
-  subtitle: string;
-  icon: Icon;
-  selected: boolean;
-
-  constructor( title: string, subtitle?: string, icon?: Icon, uuid?: string ) {
-    this.title = title;
-    this.subtitle = subtitle;
-    this.icon = icon;
-    this.uuid = uuid;
-  }
+  constructor(
+      public title: string,
+      public subtitle: string,
+      public icon: Icon,
+      public uuid?: string,
+      public selected?: boolean
+    ) {}
 
 }

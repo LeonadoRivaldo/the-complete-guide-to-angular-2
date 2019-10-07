@@ -29,8 +29,7 @@ export class ShoppingListDetailsComponent implements OnInit {
       const { name, uuid, bought } = item;
       const subtitle = `${item.quantity} item(s) in stock it's unit price is ${item.price}€ and the stock price is ${item.totalPrice()}€ `;
 
-      const listitem: ListItem = new ListItem(name);
-      listitem.subtitle = subtitle;
+      const listitem: ListItem = new ListItem(name, subtitle, {type: 'IMG', value: ''});
       listitem.uuid = uuid;
       listitem.selected = bought;
 
