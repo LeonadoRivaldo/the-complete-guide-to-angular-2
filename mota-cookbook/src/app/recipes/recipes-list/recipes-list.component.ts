@@ -4,6 +4,7 @@ import ListItem, { IListITem } from 'src/app/shared/components/list-item/list-it
 import { RecipeDetailService } from '../recipe-detail/recipe-detail.service';
 import { Icon } from 'src/app/bo/models/icon.model';
 import { RECIPES } from './recipes.mock';
+import { PageActionServiceService } from 'src/app/shared/services/page-action-service.service';
 
 @Component({
   selector: 'mcb-recipes-list',
@@ -15,12 +16,18 @@ export class RecipesListComponent implements OnInit {
   recipes: Recipe[] = RECIPES;
   selected: Recipe = null;
 
-  constructor(private recipeDetailService: RecipeDetailService) {
+  constructor(private recipeDetailService: RecipeDetailService, private pageActionServiceService: PageActionServiceService) {
     recipeDetailService.recipeIsSelected$.subscribe(
       (recipe) => {
         this.selected = recipe;
       }
     );
+
+    pageActionServiceService.pageRecipeAdded$.subscribe((newRecipe: boolean) => {
+      if ( newRecipe )  {
+        alert('ADD NEW RECIPE!');
+      }
+    });
   }
 
   ngOnInit() {

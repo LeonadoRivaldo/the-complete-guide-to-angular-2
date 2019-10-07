@@ -4,7 +4,13 @@
   <div class="container pt-3 pb-5">
     <div class="row">
       <div class="col-12">
-        <h4> {{ title }} </h4>
+        <h4 class="d-flex align-items-center">
+          <span>{{ title }}</span>
+          <button class="btn btn-outline-success btn-xs ml-auto cursor-pointer"
+            (click)="actionAdd()">
+            <i class="fas fa-plus"></i> {{addBtnLabel}}
+          </button>
+        </h4>
         <hr class="mt-1 mb-3">
       </div>
       <div class="col" *ngIf="shoppingList === true">
