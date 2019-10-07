@@ -10,6 +10,7 @@ export default interface IGroceriesItem {
   noStock?: boolean;
   price?: number;
   lowStock?: EventEmitter<string>;
+  obtained?: boolean;
 
   totalPrice?(): number;
   checkStock(): void;

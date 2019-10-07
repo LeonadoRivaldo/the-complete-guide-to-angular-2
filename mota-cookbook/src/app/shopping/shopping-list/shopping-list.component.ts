@@ -42,7 +42,7 @@ export class ShoppingListComponent implements OnInit {
   get listItems(): IListITem[] {
     return this.lists.map((list) => {
       const { listName, uuid } = list;
-      const desc = `${list.totalItens()} item(s) on the list and it's total price is ${list.totalPrice()}€`;
+      const desc = `${list.totalItens} item(s) on the list and it's total price is ${list.totalPrice}€`;
       const icon: Icon = { type: 'ICON' , value: 'fas fa-shopping-basket' };
       const obj = new ListItem(listName, desc, icon, uuid);
       return obj;

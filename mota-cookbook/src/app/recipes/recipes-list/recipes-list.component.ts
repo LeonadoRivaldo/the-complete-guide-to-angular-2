@@ -3,6 +3,7 @@ import { Recipe } from 'src/app/bo/models/recipe.model';
 import ListItem, { IListITem } from 'src/app/shared/components/list-item/list-item.compenent.model';
 import { RecipeDetailService } from '../recipe-detail/recipe-detail.service';
 import { Icon } from 'src/app/bo/models/icon.model';
+import { RECIPES } from './recipes.mock';
 
 @Component({
   selector: 'mcb-recipes-list',
@@ -11,11 +12,7 @@ import { Icon } from 'src/app/bo/models/icon.model';
 })
 export class RecipesListComponent implements OnInit {
 
-  recipes: Recipe[] = [
-    new Recipe('Blueberry Pie', [], []),
-    new Recipe('Peach Pie', [], []),
-    new Recipe('Meat loaf', [], []),
-  ];
+  recipes: Recipe[] = RECIPES;
   selected: Recipe = null;
 
   constructor(private recipeDetailService: RecipeDetailService) {
@@ -27,6 +24,7 @@ export class RecipesListComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(RECIPES);
   }
 
   isSelected( uuid: string ): boolean {

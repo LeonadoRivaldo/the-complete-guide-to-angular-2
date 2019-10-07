@@ -8,6 +8,7 @@
 .item-list-item{
   transition: all ease 0.5s;
   flex:0 0 100%;
+  max-width:100%;
   padding: .75rem 1.25rem;
   cursor: pointer;
   border: 1px solid rgba(0,0,0,.125);

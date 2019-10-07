@@ -9,16 +9,18 @@
       <h5 class="mt-4 mb-2"> Shopping list </h5>
       <mcb-list-container
         style="max-height:255px;"
-        [items]="parseToListItemList(list.items)" [select]="true" (itemSelection)="boughtItem($event)">
+        [items]="parseToListItemList()"
+        [select]="true"
+        (itemSelection)="boughtItem($event)">
       </mcb-list-container>
 
-      <div class="alert mt-2" role="alert" *ngIf="list.boughtItems()"
-        [class.alert-primary]="list.boughtAll() == false"
-        [class.alert-success]="list.boughtAll()">
-          <span class="" *ngIf="list.boughtAll() == false">
-            Added {{ list.boughtItems() }} of {{ list.totalItens() }} items to <i class="fas fa-shopping-cart"></i>
+      <div class="alert mt-2" role="alert" *ngIf="list.totalBoughtItems > 0"
+        [class.alert-primary]="list.boughtAllItems == false"
+        [class.alert-success]="list.boughtAllItems">
+          <span class="" *ngIf="list.boughtAllItems == false">
+            Added {{ list.totalBoughtItems }} of {{ list.totalItens }} items to <i class="fas fa-shopping-cart"></i>
           </span>
-          <span class="" *ngIf="list.boughtAll()">
+          <span class="" *ngIf="list.boughtAllItems">
             Got all your items, now go pay <i class="fas fa-money-check-alt"></i>
           </span>
       </div>
@@ -28,10 +30,10 @@
       <h5 class="mt-4 mb-2"> List information </h5>
       <hr class="mt-0" />
       <p class="text-help mb-0 total-price">
-        <span class="font-weight-bold">Total price: </span>{{ list.totalPrice() }}€
+        <span class="font-weight-bold">Total price: </span>{{ list.totalPrice }}€
       </p>
       <p class="text-help mb-0 total-items">
-        <span class="font-weight-bold">Total items: </span>{{ list.totalItens() }}
+        <span class="font-weight-bold">Total items: </span>{{ list.totalItens }}
       </p>
     </section>
 

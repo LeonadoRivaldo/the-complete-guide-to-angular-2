@@ -10,8 +10,8 @@
       <hr separator class="clearfix">
   </mcb-detail-header>
   <main class="recipe-detail-content-body" [class.view]="view"  [class.edit]="edit">
-    <mcb-recipe-detail-view *ngIf="view"></mcb-recipe-detail-view>
-    <mcb-recipe-detail-form *ngIf="edit"></mcb-recipe-detail-form>
+    <mcb-recipe-detail-view *ngIf="view" [recipe]="recipe"></mcb-recipe-detail-view>
+    <mcb-recipe-detail-form *ngIf="edit" ></mcb-recipe-detail-form>
   </main>
 </section>
 

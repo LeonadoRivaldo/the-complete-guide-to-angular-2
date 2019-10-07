@@ -1,1 +1,50 @@
-<p>recipe-detail-view works!</p>
+<section id="recipe-detail-view">
+  <section class="steps-list">
+    <h5 class="mt-4 mb-2"> Recipe ingredients </h5>
+    <mcb-list-container
+      [style.maxHeight]="maxHeigth"
+      [items]="parseIngredientsToListItemList()"
+      [select]="true"
+      (itemSelection)="gotIngredient($event)">
+    </mcb-list-container>
+    <div class="alert mt-2" role="alert" *ngIf="recipe.totalIngredientsObtained > 0"
+      [class.alert-primary]="recipe.haveAllIngredients == false"
+      [class.alert-success]="recipe.haveAllIngredients">
+        <span class="" *ngIf="recipe.haveAllIngredients == false">
+          you have {{ recipe.totalIngredientsObtained }} of {{ recipe.totalIngredients }} ingredients needed for this recipe
+        </span>
+        <span class="" *ngIf="recipe.haveAllIngredients">
+          You have all ingredients, start cooking!
+        </span>
+    </div>
+  </section>
+  <div class="alert alert-warning mt-5 mb-2" *ngIf="!recipe.haveAllIngredients">
+    you can't start cooking without the recipe ingredients, go fetch then.
+  </div>
+  <section class="steps-list" *ngIf="recipe.haveAllIngredients" [class.disabled]="!recipe.haveAllIngredients">
+    <h5 class="mt-4 mb-2"> Recipe steps </h5>
+    <mcb-list-container
+      style="max-height:400px"
+      [items]="parseStepsToListItemList()"
+      [select]="true"
+      (itemSelection)="stepDone($event)">
+    </mcb-list-container>
+    <div class="alert mt-2" role="alert" *ngIf="recipe.totalDoneSteps > 0"
+      [class.alert-primary]="recipe.allStepsDone == false"
+      [class.alert-success]="recipe.allStepsDone">
+        <span class="" *ngIf="recipe.allStepsDone == false">
+          done {{ recipe.totalDoneSteps }} of {{ recipe.totalSteps }} steps
+        </span>
+        <span class="" *ngIf="recipe.allStepsDone">
+          All done!
+        </span>
+    </div>
+  </section>
+  <section class="recipe-description">
+    <h5 class="mt-4 mb-2"> Recipe description </h5>
+    <hr class="mt-0" />
+    <p class="text-help mb-0">
+      {{recipe.description}}
+    </p>
+  </section>
+</section>
