@@ -15,7 +15,10 @@ export class AppComponent implements OnInit {
   shoppingList = false;
 
 
-  constructor(private pageStateService: PageStateService, private pageActionServiceService: PageActionServiceService) {
+  constructor(
+    private pageStateService: PageStateService,
+    private pageActionServiceService: PageActionServiceService
+  ) {
     pageStateService.pageTileChange$.subscribe(
       (title) => {
         setTimeout(() => this.title = title);
@@ -54,6 +57,11 @@ export class AppComponent implements OnInit {
       item = 'recipe';
     }
     this.pageActionServiceService.addItem( item );
+  }
+
+
+  get notHome(): boolean {
+    return this.shoppingList === true || this.recipes === true;
   }
 
   ngOnInit() {}

@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top navbar-light bg-light">
   <div class="container">
-    <span class="navbar-brand mb-0 h1 logo"><i class="fas fa-carrot"></i> Mota cooking book</span>
-    <mcb-menu-header></mcb-menu-header>
+    <a class="navbar-brand mb-0 h1 logo" (click)="navigate($event, '/')"><i class="fas fa-carrot"></i> Mota cooking book</a>
+    <mcb-menu-header #menuheader></mcb-menu-header>
   </div>
 </nav>

@@ -31,7 +31,6 @@ export class RecipesListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(RECIPES);
   }
 
   isSelected( uuid: string ): boolean {

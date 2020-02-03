@@ -2,6 +2,9 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import Menu from 'src/app/bo/models/menu.component.model';
 import { MENU_HEADER } from './menu.mock';
 import { PageStateService } from 'src/app/shared/services/page-state.service';
+import { NavigationService } from 'src/app/shared/services/navigation.service';
+
+
 
 @Component({
   selector: 'mcb-menu-header',
@@ -15,7 +18,10 @@ export class MenuHeaderComponent implements OnInit {
   menu: Menu;
   pageState: string;
 
-  constructor(private pageStateService: PageStateService) {
+  constructor(
+    public readonly pageStateService: PageStateService,
+    private readonly navService: NavigationService,
+  ) {
     pageStateService.pageStateChange$.subscribe(
       (state) => {
         this.pageState = state;
@@ -25,13 +31,14 @@ export class MenuHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.menu = new Menu(MENU_HEADER);
-    this.startState();
+   // this.startState();
   }
 
   navigate($event: Event, link: string) {
     $event.preventDefault();
     this.pageStateService.changePageState(link);
-    this.pageStateService.setPageTitle( this.menu.items.find((i) => i.link === link ).label );
+    this.pageStateService.setPageTitle(this.menu.items.find((i) => i.link === link ).label );
+    this.navService.nagivate([link]);
   }
 
   isActive( link: string ) {
@@ -40,8 +47,8 @@ export class MenuHeaderComponent implements OnInit {
 
   @HostListener('window:click', ['$event.target'])
   tooglePane(target: HTMLElement) {
-    //const menu = this.$findElement.findParent(target, 'nav-menu', 'mcb-menu-header');
-    //const menuContainer = this.$findElement.findParent(target, 'menu-container', 'mcb-menu-header');
+    // const menu = this.$findElement.findParent(target, 'nav-menu', 'mcb-menu-header');
+    // const menuContainer = this.$findElement.findParent(target, 'menu-container', 'mcb-menu-header');
     /* const forbidden = target.classList.contains('btn-ico')
                       || target.classList.contains('menu-btn')
                       || target.classList.contains('menu-container');

@@ -11,8 +11,7 @@
     <a class="nav-item nav-link btn btn-outline-primary"
       [class.active]="isActive( item.link ) === true"
       (click)="navigate($event, item.link)"
-      *ngFor="let item of menu.items" href="#">
-        {{item.label}}
+      *ngFor="let item of menu.items" href="#" [innerHTML]="item.label">
     </a>
   </nav>
 </section>
