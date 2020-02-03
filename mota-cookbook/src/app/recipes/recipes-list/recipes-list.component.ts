@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from 'src/app/bo/models/recipe.model';
+import { Recipe, IRecipe } from 'src/app/bo/models/recipe.model';
 import ListItem, { IListITem } from 'src/app/shared/components/list-item/list-item.compenent.model';
 import { RecipeDetailService } from '../recipe-detail/recipe-detail.service';
 import { Icon } from 'src/app/bo/models/icon.model';
@@ -15,6 +15,7 @@ export class RecipesListComponent implements OnInit {
 
   recipes: Recipe[] = RECIPES;
   selected: Recipe = null;
+  listItems: IListITem[];
 
   constructor(private recipeDetailService: RecipeDetailService, private pageActionServiceService: PageActionServiceService) {
     recipeDetailService.recipeIsSelected$.subscribe(
@@ -31,13 +32,14 @@ export class RecipesListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.listItems = this.bluidListItems();
   }
 
   isSelected( uuid: string ): boolean {
     return this.selected ? this.selected.uuid === uuid : false ;
   }
 
-  get listItems(): IListITem[] {
+  bluidListItems(): IListITem[] {
     return this.recipes.map((recipe) => {
       const { name, description, uuid, imagePath } = recipe;
       const icon: Icon = { type: 'IMG', value: imagePath };
