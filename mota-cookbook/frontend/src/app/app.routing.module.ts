@@ -14,6 +14,10 @@ const routes: Routes  = [
     path: 'shopping-list',
     loadChildren: './shopping/shopping.module#ShoppingModule',
   },
+  {
+    path: 'ingredients',
+    loadChildren: './ingredients/ingredients.module#IngredientsModule',
+  },
 ];
 
 @NgModule({

@@ -12,11 +12,6 @@ import { ShoppingRoutingModule } from './shopping.routing.module';
     ShoppingListComponent,
     ShoppingListDetailsComponent,
   ],
-  exports: [
-    ShoppingComponent,
-    ShoppingListComponent,
-    ShoppingListDetailsComponent
-  ],
   imports: [
     ShoppingRoutingModule,
     CommonModule,

@@ -20,13 +20,6 @@ import { RecipesRoutingModule } from './recipes.routing.module';
     RecipeDetailFormComponent,
     RecipeDetailViewComponent
   ],
-  exports: [
-    RecipesComponent,
-    RecipesListComponent,
-    RecipeDetailComponent,
-    RecipeDetailFormComponent,
-    RecipeDetailViewComponent
-  ],
   imports: [
     RecipesRoutingModule,
     CommonModule,

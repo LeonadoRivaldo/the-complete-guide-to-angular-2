@@ -3,6 +3,7 @@ import Menu from 'src/app/bo/models/menu.component.model';
 import { MENU_HEADER } from './menu.mock';
 import { PageStateService } from 'src/app/shared/services/page-state.service';
 import { NavigationService } from 'src/app/shared/services/navigation.service';
+import { PageState } from 'src/app/bo/models/menu.item.model';
 
 
 
@@ -16,14 +17,14 @@ export class MenuHeaderComponent implements OnInit {
   showMenu: boolean;
   menuOut: boolean;
   menu: Menu;
-  pageState: string;
+  pageState: PageState;
 
   constructor(
     public readonly pageStateService: PageStateService,
     private readonly navService: NavigationService,
   ) {
     pageStateService.pageStateChange$.subscribe(
-      (state) => {
+      (state: PageState) => {
         this.pageState = state;
       }
     );
@@ -35,8 +36,15 @@ export class MenuHeaderComponent implements OnInit {
   }
 
   navigate($event: Event, link: string) {
+    let state = link;
+
     $event.preventDefault();
-    this.pageStateService.changePageState(link);
+
+    if ( state === '/' ) {
+      state = 'home';
+    }
+
+    this.pageStateService.changePageState(state);
     this.pageStateService.setPageTitle(this.menu.items.find((i) => i.link === link ).label );
     this.navService.nagivate([link]);
   }

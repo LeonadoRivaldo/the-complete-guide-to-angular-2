@@ -33,9 +33,6 @@ export class ShoppingListComponent implements OnInit {
     this.lists = [
       new ShoppingList('Fruits', list )
     ];
-
-    console.log('itens', list);
-
   }
 
 

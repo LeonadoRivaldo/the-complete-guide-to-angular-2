@@ -9,7 +9,7 @@ export class NavigationService {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router
-  ) { }
+  ) {}
 
 
   public nagivate(path: string[], params?: NavigationExtras ): void {

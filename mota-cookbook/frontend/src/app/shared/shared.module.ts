@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { DetailHeaderComponent } from './components/detail-header/detail-header.component';
 import { ListContainerComponent } from './components/list-container/list-container.component';
+import { MainListViewComponent } from './components/main-list-view/main-list-view.component';
 
 @NgModule({
   declarations: [
     ListItemComponent,
     DetailHeaderComponent,
-    ListContainerComponent
+    ListContainerComponent,
+    MainListViewComponent
   ],
   imports: [
     CommonModule
@@ -16,7 +18,8 @@ import { ListContainerComponent } from './components/list-container/list-contain
   exports: [
     ListItemComponent,
     DetailHeaderComponent,
-    ListContainerComponent
+    ListContainerComponent,
+    MainListViewComponent
   ]
 })
 export class SharedModule { }

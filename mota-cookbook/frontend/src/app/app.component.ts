@@ -1,18 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PageStateService } from './shared/services/page-state.service';
-import { TouchSequence } from 'selenium-webdriver';
 import { PageActionServiceService } from './shared/services/page-action-service.service';
+import { PageState } from './bo/models/menu.item.model';
+
+const newBtnLabels = {
+  'recipes-list': 'recipe',
+  'shopping-list': 'shopping list',
+  ingredients: 'ingredient',
+  'meal-planning': 'meal plan'
+};
+
+
 
 @Component({
   selector: 'mcb-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  pageState: string;
+export class AppComponent {
+  pageState: PageState = 'home';
   title: string;
-  recipes = false;
-  shoppingList = false;
 
 
   constructor(
@@ -26,44 +33,38 @@ export class AppComponent implements OnInit {
     );
 
     pageStateService.pageStateChange$.subscribe(
-      (state) => {
+      (state: PageState) => {
         setTimeout(() => this.setPageState(state));
       }
     );
   }
 
-  private setPageState(state) {
-    this.pageState = state;
-    this.shoppingList = state === 'shopping-list';
-    this.recipes = state === 'recipes-list';
-  }
-
 
   get addBtnLabel(): string {
-    let label = 'New ';
-    if ( this.shoppingList ) {
-      label += 'shopping list';
-    } else if ( this.recipes ) {
-      label += 'recipe';
-    }
-    return label;
+    const stateLabel = newBtnLabels[this.pageState];
+    return `New ${stateLabel ? stateLabel : ''}`;
+  }
+  get isRecipesList() {
+    return this.pageState === 'recipes-list';
+  }
+  get isShoppingList() {
+    return this.pageState === 'shopping-list';
+  }
+  get isIngrentsStock() {
+    return this.pageState === 'ingredients';
+  }
+  get isMealPlanning() {
+    return this.pageState === 'meal-planning';
+  }
+  get isHome() {
+    return this.pageState === 'home';
   }
 
-  actionAdd() {
-    let item = '';
-    if ( this.shoppingList ) {
-      item = 'shopping-list';
-    } else if ( this.recipes ) {
-      item = 'recipe';
-    }
-    this.pageActionServiceService.addItem( item );
-  }
+
+  /** METHODS */
+  public readonly actionAdd = () => this.pageActionServiceService.addItem(this.pageState);
 
 
-  get notHome(): boolean {
-    return this.shoppingList === true || this.recipes === true;
-  }
-
-  ngOnInit() {}
-
+  /** INTERNAL METHODS */
+  private readonly setPageState = (state: PageState) => this.pageState = state;
 }

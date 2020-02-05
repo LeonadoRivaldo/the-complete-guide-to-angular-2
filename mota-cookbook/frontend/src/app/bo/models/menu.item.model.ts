@@ -1,4 +1,3 @@
-
 export default interface IMenuItem {
   link: string;
   label: string;
@@ -6,3 +5,7 @@ export default interface IMenuItem {
   active?: boolean;
   deactivated?: boolean;
 }
+
+
+
+export type PageState = 'home' | 'recipes-list' | 'shopping-list' | 'ingredients' | 'meal-planning';
