@@ -41,6 +41,7 @@ export class RecipesListComponent implements OnInit {
 
   bluidListItems(): IListITem[] {
     return this.recipes.map((recipe) => {
+      console.log( JSON.stringify(recipe) );
       const { name, description, uuid, imagePath } = recipe;
       const icon: Icon = { type: 'IMG', value: imagePath };
       const obj = new ListItem(name, description, icon, uuid);
