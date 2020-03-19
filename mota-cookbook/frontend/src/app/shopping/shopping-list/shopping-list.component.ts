@@ -45,6 +45,7 @@ export class ShoppingListComponent implements IListItemController<ShoppingList> 
       new ShoppingList('Fruits', list )
     ];
     this.items = this.bluidItems();
+    this.createSubscriptions();
   }
 
   /** CLASS METHODS */
@@ -97,7 +98,7 @@ export class ShoppingListComponent implements IListItemController<ShoppingList> 
       this.selectItem$ = this.shoppingListDetailService.shoppingListIsSelected$.subscribe(this.selectItem);
     }
     if ( !this.addItem$ ) {
-      this.addItem$ = this.pageActionServiceService.pageAddItem$.subscribe(() => console.log('aqui'));
+      this.addItem$ = this.pageActionServiceService.pageAddItem$.subscribe(this.addItem);
     }
   }
 
