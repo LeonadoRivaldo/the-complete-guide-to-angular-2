@@ -1,5 +1,5 @@
 <mcb-list-container
-  [items]="listItems"
-  [selectedUiid]="selected?.uuid"
-  (itemSelection)="details($event)">
+  [items]="items"
+  [selectedUiid]="item?.uuid"
+  (itemSelection)="selectedItem($event)">
 </mcb-list-container>

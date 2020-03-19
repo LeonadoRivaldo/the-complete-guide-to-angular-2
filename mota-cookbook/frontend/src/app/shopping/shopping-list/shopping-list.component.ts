@@ -1,25 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import ListItem, { IListITem } from 'src/app/shared/components/list-item/list-item.compenent.model';
 import ShoppingListItem from 'src/app/bo/models/shopping-list-item.model';
 import { Icon } from 'src/app/bo/models/icon.model';
 import { IShoppingList, ShoppingList } from 'src/app/bo/models/shopping-list.model';
 import { ShoppingListDetailService } from '../shopping-list-details/shopping-list-detail.service';
+import { IListItemController } from 'src/app/bo/models/list.model';
+import { Subscription } from 'rxjs';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'mcb-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.scss']
 })
-export class ShoppingListComponent implements OnInit {
-  selected: ShoppingList;
-  lists: IShoppingList[];
+export class ShoppingListComponent implements IListItemController<ShoppingList> , OnInit, OnDestroy {
+  list: ShoppingList[];
+  item: ShoppingList;
+  items: IListITem[];
+  addItem$: Subscription;
+  editItem$: Subscription;
+  selectItem$: Subscription;
+  removeItem$: Subscription;
 
-  constructor(private shoppingListDetailService: ShoppingListDetailService) {
-    shoppingListDetailService.shoppingListIsSelected$.subscribe(
-      (list) => {
-        this.selected = list;
-      }
-    );
+  constructor(private shoppingListDetailService: ShoppingListDetailService) {}
+
+
+  ngOnDestroy(): void {
+    this.clearSubscriptions();
   }
 
   ngOnInit() {
@@ -30,14 +37,35 @@ export class ShoppingListComponent implements OnInit {
       new ShoppingListItem('Meat', 1, 10),
       new ShoppingListItem('Bananas', 12, 1)
     ];
-    this.lists = [
+    this.list = [
       new ShoppingList('Fruits', list )
     ];
+    this.items = this.bluidItems();
   }
 
+  /** CLASS METHODS */
+  addItem(newItem: boolean): void {
+    throw new Error("Method not implemented.");
+  }
+  editItem(item: ShoppingList): void {
+    throw new Error("Method not implemented.");
+  }
+  selectItem(item: ShoppingList): void {
+    console.log({item});
+    this.item = item;
+  }
+  removeItem(item: ShoppingList): void {
+    throw new Error("Method not implemented.");
+  }
+  selectedItem(item: IListITem): void {
+    if (!item.uuid) {
+      return;
+    }
 
-  get listItems(): IListITem[] {
-    return this.lists.map((list) => {
+    this.shoppingListDetailService.selectShoppingList( this.list.find( l => l.uuid === item.uuid ) );
+  }
+  bluidItems(): IListITem[] {
+    return this.list.map((list) => {
       const { listName, uuid } = list;
       const desc = `${list.totalItens} item(s) on the list and it's total price is ${list.totalPrice}€`;
       const icon: Icon = { type: 'ICON' , value: 'fas fa-shopping-basket' };
@@ -46,14 +74,19 @@ export class ShoppingListComponent implements OnInit {
     });
   }
 
-
-  details(listItem: IListITem): void {
-    if (!listItem.uuid) {
-      return;
-    }
-
-    this.shoppingListDetailService.selectShoppingList( this.lists.find( l => l.uuid === listItem.uuid ) );
+  clearSubscriptions(): void {
+    try {
+      this.selectItem$.unsubscribe();
+    } catch (error) {}
   }
+  createSubscriptions(): void {
+    if ( !this.selectItem$) {
+      this.selectItem$ = this.shoppingListDetailService.shoppingListIsSelected$.subscribe(
+        (list) => {
 
+        }
+      );
+    }
+  }
 
 }

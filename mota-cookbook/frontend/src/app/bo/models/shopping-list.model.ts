@@ -23,9 +23,6 @@ export class ShoppingList implements IShoppingList {
 
   // tslint:disable-next-line: variable-name
   constructor( listName: string, list: ShoppingListItem[], _uuid?: string ) {
-
-    console.log( list );
-
     this.listName = listName;
     this.items = list;
     this.uuid = _uuid || uuid.v4();
