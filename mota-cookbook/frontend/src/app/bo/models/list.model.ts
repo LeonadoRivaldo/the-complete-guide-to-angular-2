@@ -2,6 +2,7 @@ import { IListITem } from 'src/app/shared/components/list-item/list-item.compene
 import { Subscription } from 'rxjs';
 import { OnInit, OnDestroy } from '@angular/core';
 
+export type ItemType = 'recipes-list' | 'shopping-list' | 'meal-planning' | 'ingredients';
 
 export interface IListItemController<T> extends OnInit, OnDestroy {
   /** props */
@@ -16,7 +17,7 @@ export interface IListItemController<T> extends OnInit, OnDestroy {
 
   /** methods */
   bluidItems(): IListITem[];
-  addItem(newItem: boolean): void;
+  addItem(itemType: ItemType ): void;
   editItem(item: T): void;
   selectItem(item: T): void;
   removeItem(item: T): void;

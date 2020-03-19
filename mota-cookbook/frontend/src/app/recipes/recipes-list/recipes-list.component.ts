@@ -6,7 +6,7 @@ import { Icon } from 'src/app/bo/models/icon.model';
 import { RECIPES } from './recipes.mock';
 import { PageActionServiceService } from 'src/app/shared/services/page-action-service.service';
 import { Subscription } from 'rxjs';
-import { IListItemController } from 'src/app/bo/models/list.model';
+import { IListItemController, ItemType } from 'src/app/bo/models/list.model';
 
 @Component({
   selector: 'mcb-recipes-list',
@@ -52,7 +52,7 @@ export class RecipesListComponent implements IListItemController<Recipe>, OnInit
 
   public createSubscriptions(): void {
     if (!this.addItem$) {
-      this.addItem$ = this.pageActionServiceService.pageRecipeAdded$.subscribe(this.addItem);
+      this.addItem$ = this.pageActionServiceService.pageAddItem$.subscribe(this.addItem);
     }
 
     if ( !this.selectItem$ ) {
@@ -63,16 +63,19 @@ export class RecipesListComponent implements IListItemController<Recipe>, OnInit
 
   clearSubscriptions(): void {
     try {
-      this.addItem$.unsubscribe();
       this.selectItem$.unsubscribe();
+      this.addItem$.unsubscribe();
+      this.editItem$.unsubscribe();
+      this.editItem$.unsubscribe();
+      this.removeItem$.unsubscribe();
     } catch (error) {
+      console.log('clearSubscriptions @ some of this are not implemented');
     }
   }
 
-  addItem(newItem: boolean): void {
-    if (newItem) {
+  addItem(newItem: ItemType): void {
+    if (newItem === 'recipes-list') {
       alert('ADD NEW RECIPE!');
-      throw new Error('addItem not implemented yet!');
     }
   }
   editItem(item: Recipe): void {

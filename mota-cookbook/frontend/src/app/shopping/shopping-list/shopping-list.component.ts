@@ -4,9 +4,10 @@ import ShoppingListItem from 'src/app/bo/models/shopping-list-item.model';
 import { Icon } from 'src/app/bo/models/icon.model';
 import { IShoppingList, ShoppingList } from 'src/app/bo/models/shopping-list.model';
 import { ShoppingListDetailService } from '../shopping-list-details/shopping-list-detail.service';
-import { IListItemController } from 'src/app/bo/models/list.model';
+import { IListItemController, ItemType } from 'src/app/bo/models/list.model';
 import { Subscription } from 'rxjs';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { PageActionServiceService } from 'src/app/shared/services/page-action-service.service';
 
 @Component({
   selector: 'mcb-shopping-list',
@@ -22,7 +23,10 @@ export class ShoppingListComponent implements IListItemController<ShoppingList> 
   selectItem$: Subscription;
   removeItem$: Subscription;
 
-  constructor(private shoppingListDetailService: ShoppingListDetailService) {}
+  constructor(
+    private shoppingListDetailService: ShoppingListDetailService,
+    private readonly pageActionServiceService: PageActionServiceService
+  ) {}
 
 
   ngOnDestroy(): void {
@@ -44,8 +48,11 @@ export class ShoppingListComponent implements IListItemController<ShoppingList> 
   }
 
   /** CLASS METHODS */
-  addItem(newItem: boolean): void {
-    throw new Error("Method not implemented.");
+  addItem(newItem: ItemType): void {
+    console.log({newItem});
+    if (newItem === 'shopping-list') {
+      alert('ADD NEW SHOPPING LIST');
+    }
   }
   editItem(item: ShoppingList): void {
     throw new Error("Method not implemented.");
@@ -77,15 +84,20 @@ export class ShoppingListComponent implements IListItemController<ShoppingList> 
   clearSubscriptions(): void {
     try {
       this.selectItem$.unsubscribe();
-    } catch (error) {}
+      this.addItem$.unsubscribe();
+      this.editItem$.unsubscribe();
+      this.editItem$.unsubscribe();
+      this.removeItem$.unsubscribe();
+    } catch (error) {
+      console.log('clearSubscriptions @ some of this are not implemented');
+    }
   }
   createSubscriptions(): void {
     if ( !this.selectItem$) {
-      this.selectItem$ = this.shoppingListDetailService.shoppingListIsSelected$.subscribe(
-        (list) => {
-
-        }
-      );
+      this.selectItem$ = this.shoppingListDetailService.shoppingListIsSelected$.subscribe(this.selectItem);
+    }
+    if ( !this.addItem$ ) {
+      this.addItem$ = this.pageActionServiceService.pageAddItem$.subscribe(() => console.log('aqui'));
     }
   }
 
